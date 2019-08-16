@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>跑马灯效果图</title>
+		<!--导入vue包-->
+		<script src="./lib/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<h4>{{msg}}</h4>
+			<input type="button" value="浪起来" @click="lang" />
+			<input type="button" value="低调" @click="stop" />
+	    </div>
+
+		
+		<script >
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					msg: '跑马灯走起——~~,欢呼！',
+					intervalID: null
+				},
+				methods: {
+					lang(){
+						this.intervalID=setInterval(() =>{
+								var start=this.msg.substring(0,1)
+								var end  =this.msg.substring(1)
+								this.msg =end + start
+							},100)
+					},
+					stop(){
+						clearInterval(this.intervalID)
+						this.intervaID=null
+                       
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

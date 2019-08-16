@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>v-model的双向绑定</title>
+        <script src="./lib/vue.js"></script>
+        <style>
+            .input{
+                width:200px;
+                height:30px;
+                color:brown;
+            }
+            .text{
+                margin-top: 20px;
+                width: 100%;
+                height: 40px;
+                background-color: aqua;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="lqq">
+            <div style="color:mediumblue">根据输入框的内容发生改变:</div>
+            <input class="input" type="text" v-model="msg" placeholder="请输入" >
+
+            <div class="text">{{msg}}</div>
+        </div>
+
+        <script>
+            var vm=new Vue({
+                el:'#lqq',
+                data:{
+                    msg:''
+                },
+                methods:{}
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>事件修饰符</title>
+		<!--导入vue包-->
+        <script src="./lib/vue.js"></script>
+        <style>
+            .inner{
+                height:150px;
+                background-color: rgb(68, 158, 170);
+            }
+            .outer{
+                padding:40px;
+                background-color: rgb(236, 168, 65);
+            }
+            .btn{
+                margin:40px;
+            }
+        </style>
+	</head>
+
+	<body>
+        <!--.stop ,.prevent ,.capture ,.self ,.once这几个事件修饰符的用法-->
+		<div id="app">
+        <!--1.使用.stop，阻止 冒泡（即在点击按钮触发btn点击事件后，inner、outer的点击事件也依次触发）-->
+		<!--<div class="outer" @click="outerHandler" >
+                <div class="inner" @click="innerHandler">
+                    <input type="button" value="点击" class="btn" @click.stop="btnHandler">
+                </div>
+            </div>--> 
+        
+        <!--2.使用.prevent来阻止默认事件（如下点击链接后不跳转）-->
+        <!--<a href="http://www.baidu.com" @click.prevent="linkClick">要去百度吗</a>-->
+        
+        <!--3.使用.capture来捕获事件，即先触发outerHandler再按冒泡顺序-->
+        <!--<div class="outer" @click.capture="outerHandler" >
+                <div class="inner" @click="innerHandler">
+                    <input type="button" value="点击" class="btn" @click="btnHandler">
+                </div>
+             </div>-->
+
+        <!--4.外层div使用.self使得只有再点击其本身是才会触发事件-->
+        <!--<div class="outer" @click.self="outerHandler" >
+                <div class="inner" @click.self="innerHandler">
+                    <input type="button" value="点击" class="btn" @click="btnHandler">
+                </div>
+            </div> -->
+        
+        <!--5.添加.once修饰符，使得事件只触发一次，且可以和其他修饰符搭配，不分前后-->
+            <div class="outer" @click.self.once="outerHandler" >
+                    <div class="inner" @click="innerHandler">
+                        <input type="button" value="点击" class="btn" @click="btnHandler">
+                    </div>
+            </div>
+        
+
+	    </div>
+
+		
+		<script >
+			var vm = new Vue({
+				el: '#app',
+				data: {	},
+				methods: {
+                    innerHandler(){
+                        console.log('触发的是inner的click事件')
+                    },
+                    btnHandler(){
+                        console.log('触发的是btn的click事件')
+                    },
+                    outerHandler(){
+                        console.log('触发的是outer的click事件')
+                    },
+                    linkClick(){
+                        console.log('触发了链接的点击事件')
+                    }
+				}
+			})
+		</script>
+	</body>
+</html>
